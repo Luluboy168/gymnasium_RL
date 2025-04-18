@@ -14,42 +14,41 @@ plt.switch_backend('Agg')
 
 # ---------- Environment Setup ----------
 
-num_envs = 64
+num_envs = 32
 # Create a vectorized environment using gym.make_vec (without any wrappers)
 envs = gym.make_vec("Humanoid-v5", num_envs=num_envs, vectorization_mode="sync")
 
-obs_space = envs.single_observation_space  # e.g., Box(-inf, inf, (17,), float64)
-act_space = envs.single_action_space         # e.g., Box(-1, 1, (6,), float32)
+obs_space = envs.single_observation_space
+act_space = envs.single_action_space 
 
-obs_dim = obs_space.shape[0]  # 17
-act_dim = act_space.shape[0]  # 6
+obs_dim = obs_space.shape[0]
+act_dim = act_space.shape[0]
 
-# We'll manually track cumulative reward per sub-environment
 episode_rewards = np.zeros(num_envs)  # one per sub-environment
-all_episode_rewards = []  # to store completed episode rewards
+all_episode_rewards = [] 
 episode_count = 0
 
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = ActorCritic(obs_dim, act_dim).to(device)
-optimizer = optim.Adam(model.parameters(), lr=1e-4)
+optimizer = optim.Adam(model.parameters(), lr=3e-4)
 
 # ---------- Hyperparameters ----------
-total_updates    = 650       # total training updates
-steps_per_update = 2048       # total timesteps per update (across all envs)
+total_updates    = 1000       # total training updates
+steps_per_update = 2048       # total timesteps per update
 ppo_epochs       = 10         # PPO epochs per update
 mini_batch_size  = 128        # mini-batch size for PPO updates
 gamma            = 0.99       # discount factor
 gae_lambda       = 0.95       # GAE lambda
-clip_epsilon     = 0.05       # PPO clip parameter
-value_loss_coef  = 0.25        # weight for the value loss
+clip_epsilon     = 0.1        # PPO clip parameter
+value_loss_coef  = 0.25       # weight for the value loss
 entropy_coef     = 0.01       # weight for the entropy bonus
 
 # Storage for logging and plotting
-loss_history      = []        # average loss per update
-plot_updates      = []        # x-axis: episode count marker for plots
-avg_reward_history= []        # average reward every 50 episodes
-next_plot_episode = 50        # threshold for plot update
+loss_history      = []
+plot_updates      = []
+avg_reward_history= []
+next_plot_episode = 50
 
 # ---------- Utility: Generalized Advantage Estimation (GAE) ----------
 def compute_gae(rewards, values, dones, next_value, gamma=0.99, lam=0.95):
@@ -113,7 +112,7 @@ for update in range(total_updates):
         
         obs = next_obs
 
-    # Convert buffers to numpy arrays (shape: [steps_per_update, num_envs, ...])
+    # Convert buffers to numpy arrays
     obs_buffer      = np.array(obs_buffer)
     actions_buffer  = np.array(actions_buffer)
     logprobs_buffer = np.array(logprobs_buffer)
@@ -121,11 +120,11 @@ for update in range(total_updates):
     dones_buffer    = np.array(dones_buffer, dtype=np.float32)
     values_buffer   = np.array(values_buffer)
 
-    # Bootstrap: get value estimates for the last observations
+    # get value estimates for the last observations
     obs_tensor = torch.FloatTensor(obs).to(device)
     with torch.no_grad():
         _, _, next_values = model(obs_tensor)
-    next_values = next_values.cpu().numpy()  # shape: (num_envs,)
+    next_values = next_values.cpu().numpy() 
 
     # Compute advantages and returns for each sub-environment separately.
     advantages_buffer = np.zeros_like(rewards_buffer)
@@ -142,7 +141,7 @@ for update in range(total_updates):
         advantages_buffer[:, env_idx] = adv
         returns_buffer[:, env_idx] = ret
 
-    # Flatten the trajectory: shape becomes (steps_per_update * num_envs, ...)
+    # Flatten the trajectory
     batch_obs       = torch.FloatTensor(obs_buffer.reshape(-1, obs_dim)).to(device)
     batch_actions   = torch.FloatTensor(actions_buffer.reshape(-1, act_dim)).to(device)
     batch_logprobs  = torch.FloatTensor(logprobs_buffer.reshape(-1)).to(device)
@@ -190,7 +189,7 @@ for update in range(total_updates):
     avg_loss = total_loss / (ppo_epochs * (batch_size // mini_batch_size))
     loss_history.append(avg_loss)
     
-    # Print training information for every update
+    # Print
     recent_avg_reward = (np.mean(all_episode_rewards[-10:])
                          if len(all_episode_rewards) >= 10 else
                          np.mean(all_episode_rewards) if all_episode_rewards else 0)
@@ -203,12 +202,11 @@ for update in range(total_updates):
         torch.save(model.state_dict(), model_path)
         print(f"Model saved at update {update+1} as '{model_path}'")
         
-        # Save a plot of average reward and loss.
-        # Plot rewards: individual and rolling mean
+        # Plot
         plt.figure(figsize=(12, 6))
         plt.plot(all_episode_rewards, label="Episode Reward")
 
-        # Moving average over last 500
+        # Moving average
         if len(all_episode_rewards) >= 500:
             rolling = pd.Series(all_episode_rewards).rolling(window=500).mean()
             plt.plot(rolling, label="Moving Average (500)", linewidth=2)
@@ -222,7 +220,6 @@ for update in range(total_updates):
         plt.savefig("figures/episode_rewards.png")
         plt.close()
 
-        # Plot loss in a separate figure
         plt.figure(figsize=(10, 5))
         updates_axis = np.arange(1, len(loss_history) + 1)
         plt.plot(updates_axis, loss_history, marker='o')
@@ -233,7 +230,6 @@ for update in range(total_updates):
         plt.tight_layout()
         plt.savefig("figures/loss_plot.png")
         plt.close()
-
 
 # ---------- Final Save ----------
 torch.save(model.state_dict(), "models/ppo_humanoid_model.pth")
