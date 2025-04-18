@@ -6,15 +6,38 @@ This repository contains three different Deep Reinforcement Learning agent to pl
 3. [Humanoid](https://gymnasium.farama.org/environments/mujoco/humanoid/) agent trained using PPO.
 
 ## 🛠️ Project Structure
+Here's the overall file structure of this project 
 ```
 . 
-├── train.py # Train the agent 
-├── play.py # Play with a trained agent 
-├── video.py # Record video from trained agent 
-├── model/ # Folder for saving trained models 
-├── figures/ # Folder for saving training plots 
-├── utils.py # Preprocessing functions 
-└── requirements.txt
+├── atari/ 
+│ ├── experiments/ # experiment results
+│ ├── figures/ # Training performance plots 
+│ ├── models/ # Saved models 
+│ ├── videos/ # Recorded gameplay videos 
+│ ├── play.py # Play with a trained game agent 
+│ ├── train.py # Train game agent 
+│ ├── utils.py # Observation preprocessing 
+│ └── video.py # Save game agent gameplay to video 
+├── humanoid/ 
+│ ├── figures/
+│ ├── models/ 
+│ ├── videos/ 
+│ ├── model.py # Actor-Critic model architecture 
+│ ├── play.py # Play with PPO agent 
+│ ├── test_env.py # Environment test script 
+│ ├── train.py # PPO training script 
+│ └── video.py # Generate PPO gameplay video 
+├── walker/ 
+│ ├── figures/ 
+│ ├── models/ 
+│ ├── videos/ 
+│ ├── model.py
+│ ├── play.py
+│ ├── test_env.py
+│ ├── train.py
+│ └── video.py
+├── README.md  
+└── requirements.txt 
 ```
 
 ---
@@ -57,15 +80,5 @@ python video.py
 ```
 The video will be saved to the current working directory.
 
-🧠 Features
-- ✅ Convolutional Neural Network-based Q-Network
-
-- ✅ Support for DQN and extensions (e.g., Double DQN, Dueling DQN)
-
-- ✅ Frame preprocessing and resizing (84x84 grayscale)
-
-- ✅ Experience replay
-
-- ✅ GPU support with memory growth
-
-- ✅ Vectorized environments (parallel training support)
+---
+## References
