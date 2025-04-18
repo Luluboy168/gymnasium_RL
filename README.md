@@ -82,3 +82,12 @@ The video will be saved to the current working directory.
 
 ---
 ## References
+- https://gymnasium.farama.org/  
+- https://github.com/Harsha1997/DeepLearning-in-Atari-Games  
+- https://ithelp.ithome.com.tw/articles/10225812  
+- https://www.youtube.com/playlist?list=PLJV_el3uVTsODxQFgzMzPLa16h6B8kWM_  
+- https://github.com/PawelMlyniec/Walker-2D  
+- https://hackmd.io/@RL666/rJUDS6K05  
+- https://medium.com/intro-to-artificial-intelligence/the-actor-critic-reinforcement-learning-algorithm-c8095a655c14  
+- https://andy6804tw.github.io/2022/04/03/python-video-save/  
+
