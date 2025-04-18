@@ -5,6 +5,9 @@ This repository contains three different Deep Reinforcement Learning agent to pl
 2. [Walker2D](https://gymnasium.farama.org/environments/mujoco/walker2d/) agent trained using PPO.
 3. [Humanoid](https://gymnasium.farama.org/environments/mujoco/humanoid/) agent trained using PPO.
 
+## Author
+111550056 陳晉祿 (luluboy)
+
 ## 🛠️ Project Structure
 Here's the overall file structure of this project 
 ```
@@ -40,7 +43,7 @@ Here's the overall file structure of this project
 └── requirements.txt 
 ```
 
----
+
 
 ## Quick Start
 
@@ -80,7 +83,7 @@ python video.py
 ```
 The video will be saved to the current working directory.
 
----
+
 ## References
 - https://gymnasium.farama.org/  
 - https://github.com/Harsha1997/DeepLearning-in-Atari-Games  
