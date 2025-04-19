@@ -83,6 +83,22 @@ python video.py
 ```
 The video will be saved to the current working directory.
 
+## Demo video clips
+[![Watch the video](https://img.youtube.com/vi/zK9K6LRh2B8/hqdefault.jpg)](https://www.youtube.com/watch?v=zK9K6LRh2B8)
+[![Watch the video](https://img.youtube.com/vi/J9E-zQH21Pc/hqdefault.jpg)](https://www.youtube.com/watch?v=J9E-zQH21Pc)
+[![Watch the video](https://img.youtube.com/vi/zPHR8DiUPH0/hqdefault.jpg)](https://www.youtube.com/watch?v=zPHR8DiUPH0)
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=zK9K6LRh2B8">
+    <img src="https://img.youtube.com/vi/zK9K6LRh2B8/hqdefault.jpg" width="30%" />
+  </a>
+  <a href="https://www.youtube.com/watch?v=J9E-zQH21Pc">
+    <img src="https://img.youtube.com/vi/J9E-zQH21Pc/hqdefault.jpg" width="30%" />
+  </a>
+  <a href="https://www.youtube.com/watch?v=zPHR8DiUPH0">
+    <img src="https://img.youtube.com/vi/zPHR8DiUPH0/hqdefault.jpg" width="30%" />
+  </a>
+</p>
 
 ## References
 - https://gymnasium.farama.org/  
