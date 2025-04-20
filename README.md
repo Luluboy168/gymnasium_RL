@@ -84,9 +84,15 @@ python video.py
 The video will be saved to the current working directory.
 
 ## Demo video clips
-Click the video to watch on YouTube:
+https://github.com/user-attachments/assets/61a11cfa-1662-4f06-a9d1-672727b12fba
 
-<p align="center">
+https://github.com/user-attachments/assets/0517928c-f4f2-4f32-81a4-8039197081d7
+
+https://github.com/user-attachments/assets/bc6d6149-6ac0-48f2-92b6-2c5fcade342f
+
+
+<!-- Click the video to watch on YouTube: -->
+<!-- <p align="center">
   <a href="https://www.youtube.com/watch?v=zK9K6LRh2B8">
     <img src="https://img.youtube.com/vi/zK9K6LRh2B8/hqdefault.jpg" width="30%" />
   </a>
@@ -96,7 +102,7 @@ Click the video to watch on YouTube:
   <a href="https://www.youtube.com/watch?v=zPHR8DiUPH0">
     <img src="https://img.youtube.com/vi/zPHR8DiUPH0/hqdefault.jpg" width="30%" />
   </a>
-</p>
+</p> -->
 
 ## References
 - https://gymnasium.farama.org/  
