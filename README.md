@@ -1,4 +1,4 @@
-# Gymnasium Agents with Deep Reinforcement Learning 🎮
+# Gymnasium Agents with Deep Reinforcement Learning
 
 This repository contains three different Deep Reinforcement Learning agent to play three different environments from [OpenAI Gymnasium](https://gymnasium.farama.org). The implementation supports training, playing, and generating gameplay videos using pre-trained models. 
 1. [Assault](https://ale.farama.org/environments/assault/) agent trained using DQN.
@@ -90,6 +90,8 @@ https://github.com/user-attachments/assets/0517928c-f4f2-4f32-81a4-8039197081d7
 
 https://github.com/user-attachments/assets/bc6d6149-6ac0-48f2-92b6-2c5fcade342f
 
+To watch on youtube:
+https://www.youtube.com/playlist?list=PLKX1mYo4U0xmhWVFMrlRrHDUmlXVuIcKy
 
 <!-- Click the video to watch on YouTube: -->
 <!-- <p align="center">
